@@ -1,11 +1,20 @@
 {
     "compilerOptions": {
+        // default
         "outDir": "./build/",
         "noImplicitAny": true,
-        "module": "es6",
+        "module": "ESNext",
         "target": "es5",
         "jsx": "react",
         "allowJs": true,
-        "moduleResolution": "node"
+        "moduleResolution": "node",
+        // webpack default import support
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true
+    },
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
     }
 }
