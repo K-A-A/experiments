@@ -1,12 +1,14 @@
 import path from 'path'
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import type { Configuration as DevServerConfiguration } from 'webpack-dev-server'
 
 
 type BuildMode = 'development' | 'production'
 
 type EnvVars = {
     mode: BuildMode
+    port: number
 }
 
 
@@ -35,5 +37,9 @@ export default (env: EnvVars): webpack.Configuration => ({
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
+    },
+    devtool: 'source-map',
+    devServer: {
+        port: env.port ?? 8090,
     }
 })
