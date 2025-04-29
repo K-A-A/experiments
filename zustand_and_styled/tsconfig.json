@@ -5,8 +5,9 @@
         "noImplicitAny": true,
         "module": "ESNext",
         "target": "es5",
-        "jsx": "react",
-        "allowJs": true,
+        "jsx": "react-jsx",
+        "strict": true,
+        "allowJs": false,
         "moduleResolution": "node",
         // webpack default import support
         "allowSyntheticDefaultImports": true,
@@ -16,5 +17,7 @@
         "compilerOptions": {
             "module": "CommonJS"
         }
-    }
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
 }

@@ -13,7 +13,7 @@ type EnvVars = {
 
 
 export default (env: EnvVars): webpack.Configuration => ({
-    entry: path.resolve(__dirname, 'src', 'index.ts'),
+    entry: path.resolve(__dirname, 'src', 'index.tsx'),
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: '[name].[contenthash].js',
@@ -23,8 +23,7 @@ export default (env: EnvVars): webpack.Configuration => ({
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'public', 'index.html')
-        }),
-        new webpack.ProgressPlugin(),   //WARN: Может сильно замедлять
+        })
     ],
     module: {
         rules: [
