@@ -2,7 +2,7 @@ import { Configuration } from 'webpack'
 
 export type BuildPaths = {
     entry: string
-    html: string 
+    public: string 
     output: string
     src: string
 }

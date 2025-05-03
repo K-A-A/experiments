@@ -4,6 +4,8 @@ import { BuildOptions } from './types'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
+import path from 'path'
 
 export const buildPlugins = ({ paths, mode, analyzer }: BuildOptions): Configuration['plugins'] => {
     const isDev = mode === 'development'
@@ -11,7 +13,8 @@ export const buildPlugins = ({ paths, mode, analyzer }: BuildOptions): Configura
     
     const plugins: Configuration['plugins'] = [
         new HtmlWebpackPlugin({
-            template: paths.html
+            template: path.resolve(paths.public, 'index.html'),
+            favicon: path.resolve(paths.public, 'favicon.ico')
         }),
         new DefinePlugin({
             IS_DEV: isDev
@@ -21,7 +24,8 @@ export const buildPlugins = ({ paths, mode, analyzer }: BuildOptions): Configura
     if (isDev) {
         plugins.push(
             new webpack.ProgressPlugin(),
-            new ForkTsCheckerWebpackPlugin()
+            new ForkTsCheckerWebpackPlugin(),
+            new ReactRefreshWebpackPlugin()
         )
     }
 
