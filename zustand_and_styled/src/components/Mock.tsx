@@ -2,7 +2,6 @@ import PngExample from '@/assets/test.png'
 import SvgExample from '@/assets/test.svg'
 
 export const Mock = () => {
-
     return (
         <>
             <div>

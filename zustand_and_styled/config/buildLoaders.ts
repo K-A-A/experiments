@@ -1,4 +1,4 @@
-import { ModuleOptions } from 'webpack'
+import { ModuleOptions, runtime } from 'webpack'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { BuildOptions } from './types'
 import ReactRefreshTypeScript from 'react-refresh-typescript'
@@ -11,10 +11,10 @@ export const buildLoaders = (options: BuildOptions): ModuleOptions['rules'] => {
         type: 'asset/resource'
     }
 
-    const svgrLoader =  {
+    const svgrLoader = {
         test: /\.svg$/i,
         issuer: /\.[jt]sx?$/,
-        use: [{ 
+        use: [{
             loader: '@svgr/webpack',
             options: {
                 icon: true,
@@ -26,9 +26,9 @@ export const buildLoaders = (options: BuildOptions): ModuleOptions['rules'] => {
                         }
                     }]
                 }
-            } 
+            }
         }]
-      }
+    }
 
     const scssLoader = {
         test: /\.s[ac]ss$/i,
@@ -39,15 +39,19 @@ export const buildLoaders = (options: BuildOptions): ModuleOptions['rules'] => {
         ]
     }
 
-    const tsLoader = {
+    const babelLoader = {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         use: {
-            loader: 'ts-loader',
+            loader: "babel-loader",
             options: {
-                getCustomTransformers: () => ({
-                    before: [isDev && ReactRefreshTypeScript()].filter(Boolean)
-                })
+                presets: [
+                    '@babel/preset-env',
+                    '@babel/preset-typescript',
+                    ['@babel/preset-react', {
+                        runtime: isDev ? 'automatic' : 'classic'    // Чтобы при отладке не было React is undefined
+                    }]
+                ]
             }
         }
     }
@@ -55,7 +59,7 @@ export const buildLoaders = (options: BuildOptions): ModuleOptions['rules'] => {
     return [
         assetLoader,
         scssLoader,
-        tsLoader,
+        babelLoader,
         svgrLoader
     ]
 }

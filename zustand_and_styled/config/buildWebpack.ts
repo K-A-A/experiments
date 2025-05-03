@@ -19,12 +19,12 @@ export const buildWebpack = (options: BuildOptions): webpack.Configuration => {
             clean: true
         },
         mode,
-        devtool: isDev && 'source-map',
         plugins: buildPlugins(options),
         module: {
             rules: buildLoaders(options),
         },
         resolve: buildResolvers(options),        
+        devtool: isDev && 'source-map',
         devServer: buildDevServer(options),
         watchOptions: {
             ignored: /node_modules/
