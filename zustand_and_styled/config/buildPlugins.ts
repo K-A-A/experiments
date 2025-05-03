@@ -1,8 +1,9 @@
-import webpack, { Configuration } from 'webpack'
+import webpack, { Configuration, DefinePlugin } from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { BuildOptions } from './types'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 
 export const buildPlugins = ({ paths, mode, analyzer }: BuildOptions): Configuration['plugins'] => {
     const isDev = mode === 'development'
@@ -11,11 +12,17 @@ export const buildPlugins = ({ paths, mode, analyzer }: BuildOptions): Configura
     const plugins: Configuration['plugins'] = [
         new HtmlWebpackPlugin({
             template: paths.html
+        }),
+        new DefinePlugin({
+            IS_DEV: isDev
         })
     ]
 
     if (isDev) {
-        plugins.push(new webpack.ProgressPlugin())
+        plugins.push(
+            new webpack.ProgressPlugin(),
+            new ForkTsCheckerWebpackPlugin()
+        )
     }
 
     if (isProd){

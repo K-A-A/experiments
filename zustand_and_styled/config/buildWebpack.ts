@@ -24,8 +24,10 @@ export const buildWebpack = (options: BuildOptions): webpack.Configuration => {
         module: {
             rules: buildLoaders(options),
         },
-        resolve: buildResolvers(options),
-        
-        devServer: buildDevServer(options)
+        resolve: buildResolvers(options),        
+        devServer: buildDevServer(options),
+        watchOptions: {
+            ignored: /node_modules/
+        }
     }
 }

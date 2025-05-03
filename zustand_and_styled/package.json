@@ -5,7 +5,8 @@
   "scripts": {
     "build:debug": "webpack --env mode=development",
     "build:release": "webpack --env mode=production",
-    "start": "webpack serve"
+    "start": "webpack serve",
+    "typecheck": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "@types/webpack-bundle-analyzer": "^4.7.0",
     "@types/webpack-dev-server": "^4.7.2",
     "css-loader": "^7.1.2",
+    "fork-ts-checker-webpack-plugin": "^9.1.0",
     "html-webpack-plugin": "^5.6.3",
     "mini-css-extract-plugin": "^2.9.2",
     "sass": "^1.87.0",
