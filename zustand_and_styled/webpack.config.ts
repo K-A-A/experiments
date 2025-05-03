@@ -13,7 +13,8 @@ export default (env: EnvVars): webpack.Configuration =>
         paths: {
             entry: path.resolve(__dirname, 'src', 'index.tsx'),
             output: path.resolve(__dirname, 'static'),
-            html: path.resolve(__dirname, 'public', 'index.html')
+            html: path.resolve(__dirname, 'public', 'index.html'),
+            src: path.resolve(__dirname, 'src')
         },
         mode: env.mode ?? 'development',
         port: env.port ?? 3000,

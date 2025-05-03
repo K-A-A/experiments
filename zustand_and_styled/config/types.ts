@@ -4,6 +4,7 @@ export type BuildPaths = {
     entry: string
     html: string 
     output: string
+    src: string
 }
 
 export type BuildOptions = {
