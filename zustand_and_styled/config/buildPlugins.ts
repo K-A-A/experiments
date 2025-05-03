@@ -14,7 +14,8 @@ export const buildPlugins = ({ paths, mode, analyzer }: BuildOptions): Configura
     const plugins: Configuration['plugins'] = [
         new HtmlWebpackPlugin({
             template: path.resolve(paths.public, 'index.html'),
-            favicon: path.resolve(paths.public, 'favicon.ico')
+            favicon: path.resolve(paths.public, 'favicon.ico'),
+            publicPath: '/'
         }),
         new DefinePlugin({
             IS_DEV: isDev
