@@ -1,0 +1,1 @@
+export { RandomJoke } from './RandomJoke'

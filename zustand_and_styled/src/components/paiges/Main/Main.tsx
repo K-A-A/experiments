@@ -1,11 +1,9 @@
-import { CounterWithState } from '@/components/widgets/CounterWithState'
-import { useCounter } from '@/stores/counter-store/useCounter'
 import { WgtController } from '../../dummies/WgtController/WgtController'
 import { WgtLayout } from '../../layouts/WgtLayout'
+import { useMain } from './useMain'
 
 export const Main = () => {
-  const [wgtCount, wgtAdd, wgtRemove] = useCounter()
-  const widgets = Array.from({ length: wgtCount }, (_, i) => <CounterWithState key={i} />)
+  const { wgtCount, wgtAdd, wgtRemove, widgets } = useMain()
 
   return (
     <div

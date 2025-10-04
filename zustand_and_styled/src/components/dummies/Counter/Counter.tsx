@@ -6,7 +6,7 @@ export const Counter = (props: PlusMinusBtnsProps): JSX.Element => {
     <div
       style={{
         backgroundColor: 'orange',
-        height: 250,
+        height: 200,
         padding: 10,
       }}
     >
