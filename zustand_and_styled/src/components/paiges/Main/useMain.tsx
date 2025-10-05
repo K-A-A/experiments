@@ -1,20 +1,27 @@
+import { useState } from 'react'
 import { CounterWithState } from '@/components/widgets/CounterWithState'
 import { RandomJoke } from '@/components/widgets/RandomJoke'
-import { useCounter } from '@/stores/counter-store/useCounter'
 
 export const useMain = () => {
-  const [wgtCount, wgtAdd, wgtRemove] = useCounter()
+  const [widgets, setWidgets] = useState<JSX.Element[]>([])
 
-  //TODO: STORE ALL ELEMENTS IN ARRAY. REMOVE USE COUNTER
-  const widgets = Array.from({ length: wgtCount }, (_, i) => {
+  const addWidget = () => {
     const zeroOrOne = Math.floor(Math.random() * 10) % 2
-    return zeroOrOne ? <CounterWithState key={i} /> : <RandomJoke key={i} />
-  })
+    const wgt = zeroOrOne ? (
+      <CounterWithState key={widgets.length} />
+    ) : (
+      <RandomJoke key={widgets.length} />
+    )
+    setWidgets((prev) => [...prev, wgt])
+  }
+
+  const removeWidget = () => {
+    setWidgets((prev) => prev.slice(0, prev.length - 1))
+  }
 
   return {
-    wgtCount,
-    wgtAdd,
-    wgtRemove,
     widgets,
+    addWidget,
+    removeWidget,
   }
 }

@@ -3,7 +3,7 @@ import { WgtLayout } from '../../layouts/WgtLayout'
 import { useMain } from './useMain'
 
 export const Main = () => {
-  const { wgtCount, wgtAdd, wgtRemove, widgets } = useMain()
+  const { widgets, addWidget, removeWidget } = useMain()
 
   return (
     <div
@@ -17,7 +17,7 @@ export const Main = () => {
         overflow: 'auto',
       }}
     >
-      <WgtController onAdd={wgtAdd} onRemove={wgtRemove} count={wgtCount} />
+      <WgtController onAdd={addWidget} onRemove={removeWidget} count={widgets.length} />
       <WgtLayout>{widgets}</WgtLayout>
     </div>
   )

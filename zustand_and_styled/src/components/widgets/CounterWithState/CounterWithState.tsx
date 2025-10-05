@@ -1,8 +1,19 @@
-import { Counter } from '@/components/dummies/Counter'
-import { useCounter } from '@/stores/counter-store/useCounter'
+import { PlusMinusBtns } from '@/components/dummies/PlusMinusBtns'
+import { useCounter } from '@/components/widgets/CounterWithState/useCounter'
 
 export const CounterWithState = (): JSX.Element => {
   const [count, inc, dec] = useCounter()
 
-  return <Counter count={count} onAdd={inc} onRemove={dec} />
+  return (
+    <div
+      style={{
+        backgroundColor: 'orange',
+        height: 200,
+        padding: 10,
+      }}
+    >
+      <div>{`Текущее значение: ${count}`}</div>
+      <PlusMinusBtns count={count} onAdd={inc} onRemove={dec} />
+    </div>
+  )
 }
