@@ -37,8 +37,8 @@ export const buildPlugins = ({ paths, mode, analyzer }: BuildOptions): Configura
         }))
     }
         
-    if (analyzer)
-        plugins.push(new BundleAnalyzerPlugin())
+    // if (analyzer)
+    //     plugins.push(new BundleAnalyzerPlugin())
     
     return plugins
 }
