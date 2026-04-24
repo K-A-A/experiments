@@ -1,8 +1,9 @@
-import { createContext, useContext, useEffect, useRef } from 'react'
-import { StoreApi, createStore, useStore, type StateCreator } from 'zustand'
-import { devtools } from 'zustand/middleware'
 import { produce } from 'immer'
-import {
+import { createContext, useContext, useEffect, useRef } from 'react'
+import { createStore, useStore, type StateCreator, StoreApi } from 'zustand'
+import { devtools } from 'zustand/middleware'
+import { formatLocalTimestamp } from '../utils/datetime'
+import type {
   StoreApiWithDevtools,
   ZustandContext,
   ZustandContextInitializer,
@@ -11,7 +12,6 @@ import {
   ZustandImmerSet,
   ZustandStoreProviderProps,
 } from '../models'
-import { formatLocalTimestamp } from '../utils/datetime'
 
 export const createZustandContext = <TStore extends object>(
   /**
@@ -73,7 +73,7 @@ export const createZustandContext = <TStore extends object>(
       }
     }, [])
 
-    return <StoreContext.Provider value={createdRef.current!}>{children}</StoreContext.Provider>
+    return <StoreContext.Provider value={createdRef.current}>{children}</StoreContext.Provider>
   }
 
   const useStoreContext = <U,>(

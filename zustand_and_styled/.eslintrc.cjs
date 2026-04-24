@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   root: true,
   env: {
@@ -23,7 +25,8 @@ module.exports = {
     },
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: './tsconfig.json',
+    // Resolve from this config file so ESLint works when cwd is the repo root or parent folders.
+    project: path.join(__dirname, 'tsconfig.json'),
   },
   settings: {
     react: {
@@ -31,7 +34,7 @@ module.exports = {
     },
     'import/resolver': {
       typescript: {
-        project: './tsconfig.json',
+        project: path.join(__dirname, 'tsconfig.json'),
       },
     },
   },
